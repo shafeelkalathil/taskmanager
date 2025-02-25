@@ -73,7 +73,9 @@ class _TaskScreenState extends ConsumerState<TaskScreen> {
             ),
           ),
           Expanded(
-            child:  ListView.builder(
+            child:  filteredTaskData.isEmpty && _searchQuery.isNotEmpty
+                ? const Center(child: Text('Data not found'),)
+                : ListView.builder(
               itemCount: _searchQuery.isNotEmpty ? filteredTaskData.length :taskState.data.length ?? 0,
               itemBuilder: (context, index) {
                 TaskModel taskData = taskState.data[index].tasks?[0] ?? TaskModel();
